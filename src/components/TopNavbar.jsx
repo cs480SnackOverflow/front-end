@@ -1,22 +1,35 @@
-import React, { Component } from 'react';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import React from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
-class TopNavbar extends Component {
+export default class TopNavbar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     return (
-      <Navbar inverse>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="index.html">Commuter Studdy</a>
-          </Navbar.Brand>
-        </Navbar.Header>
-        <Nav>
-          <NavItem eventKey={1} href="#">Dashboard</NavItem>
-          <NavItem eventKey={2} href="#">Create</NavItem>
-        </Nav>
-      </Navbar>
+      <div>
+        <Navbar color="dark" dark expand="md">
+          <NavbarBrand href="/">Commuter Studdy</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink href="/create">Create</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
     );
   }
 }
-
-export default TopNavbar;
