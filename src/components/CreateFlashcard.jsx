@@ -1,13 +1,12 @@
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import FlashcardList from './FlashcardList';
+import { Table,Button, Form, FormGroup, Input } from 'reactstrap';
 
 class CreateFlashcard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      term: '',
-      definition: ''
+      title: '',
+      flashcards:[]
     };
 
     this.handleChange1 = this.handleChange1.bind(this);
@@ -28,14 +27,26 @@ class CreateFlashcard extends React.Component {
   render() {
     return (
               <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <Label for="term">Term</Label>
-                <Input type="text" name="term" id="term" term={this.state.term} onChange={this.handleChange1}/>
-              </FormGroup>
-              <FormGroup>
-                <Label for="definition">Definition</Label>
-                <Input type="textarea" name="definition" id="definition" term={this.state.definition} onChange={this.handleChange2}/>
-              </FormGroup>
+                <FormGroup>
+                  <Input type="text" name="title" id="term" placeholder="Your set's title here"/>
+                  <Table bordered striped>
+                    <tbody>
+                      <tr>
+                        <th> Term </th>
+                        <th> Definition </th>
+                      </tr>
+                      <tr>
+                        <td> 
+                          <Input type="text" name="term" id="term" term={this.state.term} onChange={this.handleChange1}/>
+                        </td>
+                        <td>
+                          <Input type="textarea" name="definition" id="definition" term={this.state.definition} onChange={this.handleChange2}/>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </FormGroup>
+                <Button>Add card </Button>
                 <Button>Submit</Button>
               </Form>
     );
