@@ -1,11 +1,14 @@
 import React from 'react'
-import { Table } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import FlashcardList from './FlashcardList';
 
 class CreateFlashcard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {term: '',definition: ''};
+    this.state = {
+      term: '',
+      definition: ''
+    };
 
     this.handleChange1 = this.handleChange1.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
@@ -18,30 +21,23 @@ class CreateFlashcard extends React.Component {
   handleChange2(event) {
     this.setState({definition: event.target.value});
   }
-  handleSubmit(event){
-    alert('New flashcard created: ' + this.state.term +' '+ this.state.definition);
+  handleSubmit(event) {
+    alert('New flashcard created: ' + this.state.term + ' ' + this.state.definition);
     event.preventDefault();
   }
-  render(){
+  render() {
     return (
-      <div>
-      <Table bordered>
-      <tbody>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Term:
-            <input type="text" term = {this.state.term}
-            onChange={this.handleChange1} />
-          Definition:
-            <input type="text" definition = {this.state.definition}
-            onChange={this.handleChange2} />
-        </label>
-        <input type="submit" value="Submit" />
-        </form>
-        </tbody>
-        </Table>
-        </div>
-
+              <Form onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Label for="term">Term</Label>
+                <Input type="text" name="term" id="term" term={this.state.term} onChange={this.handleChange1}/>
+              </FormGroup>
+              <FormGroup>
+                <Label for="definition">Definition</Label>
+                <Input type="textarea" name="definition" id="definition" term={this.state.definition} onChange={this.handleChange2}/>
+              </FormGroup>
+                <Button>Submit</Button>
+              </Form>
     );
   }
 }
