@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table,Button, Form, FormGroup, Input } from 'reactstrap';
+import UIContainer from './UIContainer'
 
 class CreateFlashcard extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class CreateFlashcard extends React.Component {
   }
   render() {
     return (
+        <UIContainer>
               <Form onSubmit={this.handleSubmit}>
                 <FormGroup>
                   <Input type="text" name="title" id="term" placeholder="Your set's title here"/>
@@ -36,7 +38,7 @@ class CreateFlashcard extends React.Component {
                         <th> Definition </th>
                       </tr>
                       <tr>
-                        <td> 
+                        <td>
                           <Input type="text" name="term" id="term" term={this.state.term} onChange={this.handleChange1}/>
                         </td>
                         <td>
@@ -49,6 +51,7 @@ class CreateFlashcard extends React.Component {
                 <Button>Add card </Button>
                 <Button>Submit</Button>
               </Form>
+              </UIContainer>
     );
   }
 }
