@@ -1,53 +1,49 @@
 import React from 'react'
-import { Table,Button, Form, FormGroup, Input } from 'reactstrap';
-import UIContainer from './UIContainer'
+import {Table, FormGroup, Input} from 'reactstrap';
 
 class CreateFlashcard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      flashcards:[]
+      term: '',
+      definition: ''
     };
 
-    this.handleChange1 = this.handleChange1.bind(this);
-    this.handleChange2 = this.handleChange2.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTermChange = this.handleTermChange.bind(this);
+    this.handleDefinitionChange = this.handleDefinitionChange.bind(this);
   }
-
-  handleChange1(event) {
+  handleTermChange(event) {
     this.setState({term: event.target.value});
   }
-  handleChange2(event) {
+  handleDefinitionChange(event) {
     this.setState({definition: event.target.value});
-  }
-  handleSubmit(event) {
-    alert('New flashcard created: ' + this.state.term + ' ' + this.state.definition);
-    event.preventDefault();
   }
   render() {
     return (
 
-                <FormGroup>
-                  <Input type="text" name="title" id="term" placeholder="Your set's title here"/>
-                  <Table bordered striped>
-                    <tbody>
-                      <tr>
-                        <th> Term </th>
-                        <th> Definition </th>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Input type="text" name="term" id="term" term={this.state.term} onChange={this.handleChange1}/>
-                        </td>
-                        <td>
-                          <Input type="textarea" name="definition" id="definition" term={this.state.definition} onChange={this.handleChange2}/>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </FormGroup>
-        
+      <FormGroup>
+        <Table bordered striped>
+          <tbody>
+            <tr>
+              <th>
+                Term
+              </th>
+              <th>
+                Definition
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <Input type="text" name="term" id="term" placeholder="Enter a term" term={this.state.term} onChange={this.handleTermChange}/>
+              </td>
+              <td>
+                <Input type="textarea" name="definition" placeholder="Enter a definition" id="definition" definition={this.state.definition} onChange={this.handleDefinitionChange}/>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </FormGroup>
+
     );
   }
 }
