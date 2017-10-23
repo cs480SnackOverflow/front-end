@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TopNavbar from './components/TopNavbar';
 import App from './components/App';
-import CreateFlashcard from './components/CreateFlashcard';
+import CreateFlashcardList from './components/CreateFlashcardList';
 
 ReactDOM.render(
   <TopNavbar />, document.getElementById('top-navbar')
 );
 
 ReactDOM.render(
-  <CreateFlashcard />, document.getElementById('create-flashcard')
+  <CreateFlashcardList />, document.getElementById('create-flashcard-list')
 );
 
 ReactDOM.render(

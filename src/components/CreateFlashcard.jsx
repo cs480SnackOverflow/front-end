@@ -27,8 +27,7 @@ class CreateFlashcard extends React.Component {
   }
   render() {
     return (
-        <UIContainer>
-              <Form onSubmit={this.handleSubmit}>
+
                 <FormGroup>
                   <Input type="text" name="title" id="term" placeholder="Your set's title here"/>
                   <Table bordered striped>
@@ -48,10 +47,7 @@ class CreateFlashcard extends React.Component {
                     </tbody>
                   </Table>
                 </FormGroup>
-                <Button>Add card </Button>
-                <Button>Submit</Button>
-              </Form>
-              </UIContainer>
+        
     );
   }
 }
