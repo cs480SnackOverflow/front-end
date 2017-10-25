@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Form, Input } from 'reactstrap';
-import UIContainer from './UIContainer'
+import { Container, Col, Row, Button, Form, Input } from 'reactstrap';
 import CreateFlashcard from './CreateFlashcard'
 import FlashcardList from './FlashcardList'
 
@@ -31,18 +30,28 @@ class CreateFlashcardList extends React.Component {
   }
   render() {
     return (
-        <UIContainer>
-          <Input type="text" name="title" id="term" placeholder="Your set's title here" size="lg"/>
-          <Form onSubmit = {this.handleAddCard}>
+        <Container fluid>
+          <Row>
+            <Col>
+              <Input type="text" name="title" id="term" placeholder="Your set's title here" size="lg"/>
+            </Col>
+          </Row>
           <div>
-                {this.state.flashcards}
-                <Button onClick={this.handleAddCard}>Add Flashcard</Button>
-
-            </div>
-
-          </Form>
-          <Button onClick={this.handleSubmit}>Submit</Button>
-       </UIContainer>
+            <Form onSubmit = {this.handleAddCard}>
+              <div>
+                    {this.state.flashcards}
+              </div>
+            </Form>
+          </div>
+          <Row>
+            <Col md="3">
+              <Button color="primary" onClick={this.handleAddCard}>Add Flashcard</Button>
+            </Col>
+            <Col md="3">
+              <Button color="success" onClick={this.handleSubmit}>Submit</Button>
+            </Col>
+          </Row>
+       </Container>
     );
   }
 }
