@@ -13,6 +13,7 @@ class CreateFlashcardList extends React.Component {
 
     this.handleAddCard = this.handleAddCard.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
 
@@ -26,6 +27,14 @@ class CreateFlashcardList extends React.Component {
     return(
       <FlashcardList flashcards={this.state.flashcards} title={this.state.title} />
     );
+
+  }
+  handleDelete(event) {
+       const flashcards = this.state.flashcards;
+       flashcards.splice(flashcards.length-1,1);
+       this.setState({
+           flashcards: flashcards
+       });
 
   }
   render() {
@@ -49,6 +58,9 @@ class CreateFlashcardList extends React.Component {
             </Col>
             <Col md="3">
               <Button color="success" onClick={this.handleSubmit}>Submit</Button>
+            </Col>
+            <Col md="3">
+              <Button color="failure" onClick={this.handleDelete}>Delete Flashcard</Button>
             </Col>
           </Row>
        </Container>
