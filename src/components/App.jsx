@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import TopNavbar from './TopNavbar';
 import FlashcardList from './FlashcardList';
+import CreateFlashcardList from './CreateFlashcardList';
 
 class App extends Component {
   
@@ -16,7 +19,15 @@ class App extends Component {
 
   render() {
     return (
-      <FlashcardList flashcards={this.state.flashcards} title={this.state.title} />
+      <Router>
+        <div>
+          <Route path='/' component={TopNavbar}/>
+          <Route path='/sets' render={() =>
+            <FlashcardList flashcards={this.state.flashcards} title={this.state.title}/>
+          }/>
+          <Route path='/create' component={CreateFlashcardList}/>
+        </div>
+      </Router>
     )
   }
 }
