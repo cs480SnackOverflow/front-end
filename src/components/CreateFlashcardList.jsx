@@ -24,6 +24,7 @@ class CreateFlashcardList extends React.Component {
   }
 
   handleSubmit(event) {
+    alert("Your flashcard set has been submitted!");
     return(
       <FlashcardList flashcards={this.state.flashcards} title={this.state.title} />
     );
@@ -40,6 +41,7 @@ class CreateFlashcardList extends React.Component {
           </tr>
         </thead>
         <tbody>
+
         {
           flashcards.map(flashcard => {
             return (
@@ -53,9 +55,16 @@ class CreateFlashcardList extends React.Component {
                 >Delete
                 </button>
               </tr>
+
             )
           })
         }
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={() => this.handleSubmit(this)}
+        >Submit
+        </button>
         </tbody>
       </Table>
     );
@@ -69,19 +78,19 @@ class CreateFlashcardList extends React.Component {
           <Col>
             <Input type="text" name="title" id="term" placeholder="Your set's title here" size="lg"/>
           </Col>
-        </Row> 
+        </Row>
         <Form onSubmit= {this.handleAddCard}>
           <FormGroup>
             <Row>
               <Col>
-                <input 
+                <input
                   className="form-control"
                   placeholder="Term"
                   onChange={event => this.setState({term: event.target.value})}
                 />
               </Col>
               <Col>
-                <input 
+                <input
                   className="form-control"
                   placeholder="Definition"
                   onChange={event => this.setState({definition: event.target.value})}
@@ -91,7 +100,7 @@ class CreateFlashcardList extends React.Component {
           </FormGroup>
           <Row>
             <Col md="3">
-              <button 
+              <button
                 type="button"
                 className="btn btn-success"
                 onClick={() => this.addFlashcard()}
@@ -111,6 +120,3 @@ function mapStateToProps(state) {
   }
 }
 export default connect(mapStateToProps, { addFlashcard, deleteFlashcard })(CreateFlashcardList);
-
-
-
