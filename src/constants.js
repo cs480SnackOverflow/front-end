@@ -1,0 +1,2 @@
+export const ADD_FLASHCARD = 'ADD_FLASHCARD';
+export const DELETE_FLASHCARD = 'DELETE_FLASHCARD';
