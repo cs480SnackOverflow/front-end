@@ -16,8 +16,8 @@ class LoadFlashcardSet extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/api/flashcards').then(response => {
-      this.setState({flashcards: response._embedded.flashcards});
+    axios.get('/api/flashcards').then(response => {
+      this.setState({flashcards: response.data._embedded.flashcards});
     });
   }
   render() {
