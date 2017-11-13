@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "annyang": "^2.6.0",
+<<<<<<< HEAD
 <<<<<<< 60051830c76ada327797fc10a8c4ce9f75345ac4
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
@@ -34,6 +35,11 @@
     "bootstrap": "^4.0.0-beta",
     "cors": "^2.8.4",
 >>>>>>> Fixed GET request, refactored with axios
+=======
+    "axios": "^0.17.0",
+    "bootstrap": "^4.0.0-beta",
+    "cors": "^2.8.4",
+>>>>>>> a69e0afdc3d0baef962633b38b44b62e35777ea5
     "jquery": "^3.2.1",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -46,6 +52,7 @@
     "react-router-dom": "^4.2.2",
     "reactstrap": "^5.0.0-alpha.3",
     "redux": "^3.7.2",
+<<<<<<< HEAD
 <<<<<<< 60051830c76ada327797fc10a8c4ce9f75345ac4
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -57,6 +64,9 @@
 =======
     "rest": "^2.0.0"
 >>>>>>> Fixed GET request, refactored with axios
+=======
+    "rest": "^2.0.0"
+>>>>>>> a69e0afdc3d0baef962633b38b44b62e35777ea5
   },
   "scripts": {
     "start": "node scripts/start.js",
