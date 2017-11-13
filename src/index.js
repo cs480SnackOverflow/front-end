@@ -12,6 +12,3 @@ ReactDOM.render(
     <App />
   </Provider>, document.getElementById('root')
 );
-ReactDOM.render(
-    <LoadFlashcardSet />, document.getElementById('LoadFlashcardSet')
-);

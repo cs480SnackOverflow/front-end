@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TopNavbar from './TopNavbar';
 import FlashcardList from './FlashcardList';
 import CreateFlashcardList from './CreateFlashcardList';
+import LoadFlashcardSet from './LoadFlashcardSet';
 
 class App extends Component {
 
@@ -23,7 +24,7 @@ class App extends Component {
         <div>
           <Route path='/' component={TopNavbar}/>
           <Route path='/sets' render={() =>
-            <FlashcardList flashcards={this.state.flashcards} title={this.state.title}/>
+            <LoadFlashcardSet/>
           }/>
           <Route path='/create' component={CreateFlashcardList}/>
         </div>
