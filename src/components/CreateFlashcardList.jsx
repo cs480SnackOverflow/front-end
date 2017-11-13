@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { addFlashcard, deleteFlashcard } from '../actions';
 import { Container, Col, Row, Table, Form, FormGroup, Input } from 'reactstrap';
 import FlashcardList from './FlashcardList';
+import axios from 'axios';
+import uuidv4 from 'uuid';
 
 class CreateFlashcardList extends React.Component {
   constructor(props) {
@@ -25,9 +27,18 @@ class CreateFlashcardList extends React.Component {
 
   handleSubmit(event) {
     alert("Your flashcard set has been submitted!");
-    return(
-      <FlashcardList flashcards={this.state.flashcards} title={this.state.title} />
-    );
+    const id = uuidv4();
+    axios.post('/set', {
+    flashcards: this.props.flashcards,
+    name: this.props.title,
+    user: id
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
   }
 
   renderFlashcards() {
