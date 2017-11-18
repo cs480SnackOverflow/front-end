@@ -10,11 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      flashcards: [
-        {'term': 'hello', 'definition': 'world'},
-        {'term': 'yu', 'definition': 'sun'}
-      ],
-      title: 'Web dev'
+      flashcards: []
     };
   }
 

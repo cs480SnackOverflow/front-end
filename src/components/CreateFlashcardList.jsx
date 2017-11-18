@@ -4,7 +4,6 @@ import { addFlashcard, deleteFlashcard } from '../actions';
 import { Container, Col, Row, Table, Form, FormGroup, Input } from 'reactstrap';
 import FlashcardList from './FlashcardList';
 import axios from 'axios';
-import uuidv4 from 'uuid';
 
 class CreateFlashcardList extends React.Component {
   constructor(props) {
@@ -26,13 +25,10 @@ class CreateFlashcardList extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log(this.props.flashcards)
+    const flashcards = this.props.flashcards;
     alert("Your flashcard set has been submitted!");
-    const id = uuidv4();
-    axios.post('/set', {
-    flashcards: this.props.flashcards,
-    name: this.props.title,
-    user: id
-  })
+    axios.post('flashcard/set/new',flashcards)
   .then(function (response) {
     console.log(response);
   })
