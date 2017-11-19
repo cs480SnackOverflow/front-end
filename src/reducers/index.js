@@ -3,13 +3,8 @@ import { ADD_FLASHCARD, DELETE_FLASHCARD } from '../constants';
 const flashcard = (action) => {
   let { term, definition } = action;
   return {
-    id: Math.floor(Math.random() * 20),
-    version: 1,
     term,
-    definition,
-    setId: "default-set",
-    userId: "default-user",
-    title: "default-title"
+    definition
   }
 }
 
