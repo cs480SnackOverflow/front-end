@@ -10,7 +10,6 @@ import {
   FormGroup,
   Input
 } from 'reactstrap';
-import FlashcardList from './FlashcardList';
 import axios from 'axios';
 import uuidv1 from 'uuid';
 
@@ -19,7 +18,8 @@ class CreateFlashcardList extends React.Component {
     super(props);
     this.state = {
       term: '',
-      definition: ''
+      definition: '',
+      title: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,18 +33,18 @@ class CreateFlashcardList extends React.Component {
     this.props.deleteFlashcard(id);
   }
 
+  addMoreInfoToFlashcard(flashcard, i, flashcards) {
+     flashcards[i].title = this.state.title;
+     flashcards[i].version = 0;
+     flashcards[i].userId = "default";
+     flashcards[i].id = i + 1;
+     flashcards[i].setId = uuidv1();
+  }
+
   handleSubmit(event) {
-    console.log(this.props.flashcards)
     alert("Your flashcard set has been submitted!");
     const flashcards = this.props.flashcards;
-    flashcards.forEach(
-      function addProps(flashcard, i, flashcards) {
-        flashcards[i].title = "title";
-        flashcards[i].version = 0;
-        flashcards[i].userId = "default";
-        flashcards[i].id = i + 1;
-        flashcards[i].setId = uuidv1();
-    })
+    flashcards.forEach(this.addMoreInfoToFlashcard.bind(this));
     axios.post('flashcard/set/new', flashcards).then(function(response) {
       console.log(response);
     }).catch(function(error) {
@@ -89,7 +89,7 @@ class CreateFlashcardList extends React.Component {
       <Container fluid>
         <Row>
           <Col>
-            <Input type="text" name="title" id="term" placeholder="Your set's title here" size="lg"/>
+            <Input type="text" name="title" id="term" placeholder="Your set's title here" size="lg" onChange={event => this.setState({title: event.target.value})}/>
           </Col>
         </Row>
         <Form onSubmit={this.handleAddCard}>
