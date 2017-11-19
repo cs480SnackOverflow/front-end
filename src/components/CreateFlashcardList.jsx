@@ -37,14 +37,15 @@ class CreateFlashcardList extends React.Component {
     console.log(this.props.flashcards)
     alert("Your flashcard set has been submitted!");
     const flashcards = this.props.flashcards;
-    axios.post('flashcard/set/new', flashcards.forEach(
+    flashcards.forEach(
       function addProps(flashcard, i, flashcards) {
         flashcards[i].title = "title";
         flashcards[i].version = 0;
         flashcards[i].userId = "default";
         flashcards[i].id = i + 1;
         flashcards[i].setId = uuidv1();
-    })).then(function(response) {
+    })
+    axios.post('flashcard/set/new', flashcards).then(function(response) {
       console.log(response);
     }).catch(function(error) {
       console.log(error);
@@ -74,7 +75,7 @@ class CreateFlashcardList extends React.Component {
 
             )
           })
-}
+        }
           <button type="button" className="btn btn-success" onClick={() => this.handleSubmit(this)}>Submit
           </button>
         </tbody>
