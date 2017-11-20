@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TopNavbar from './TopNavbar';
 import CreateFlashcardList from './CreateFlashcardList';
 import LoadFlashcardSet from './LoadFlashcardSet';
+import annyang from 'annyang';
 
 class App extends Component {
 
@@ -11,6 +12,16 @@ class App extends Component {
     this.state = {
       flashcards: []
     };
+  }
+
+  componentDidMount() {
+    if (annyang) {
+      let commands = {
+        'hello': () => console.log('hello world')
+      };
+      annyang.addCommands(commands);
+      annyang.start();
+    }
   }
 
   render() {
