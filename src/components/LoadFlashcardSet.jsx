@@ -2,6 +2,9 @@ import React from 'react';
 import FlashcardList from './FlashcardList';
 import axios from 'axios';
 import annyang from 'annyang';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import StudyFlashcardSet from './StudyFlashcardSet'
 
 class LoadFlashcardSet extends React.Component {
 
@@ -22,9 +25,6 @@ class LoadFlashcardSet extends React.Component {
     return {flashcards: [],title:''};
   }
 
-
-
-  
   componentDidMount() {
     axios.get('/api/flashcards').then(response => {
       this.setState({flashcards: response.data._embedded.flashcards});
@@ -36,11 +36,16 @@ class LoadFlashcardSet extends React.Component {
     console.log(audioSrc);
     return (
       <div>
-        <FlashcardList flashcards={this.state.flashcards} title={this.state.title}/>
         <audio autoPlay>
           <source src={ audioSrc } type='audio/mpeg'/>
             Your browser does not support the audio element.
         </audio>
+        <FlashcardList flashcards={this.state.flashcards} title={this.state.title}/>
+        <Nav>
+          <NavItem>
+            <NavLink href="/study">Study</NavLink>
+          </NavItem>
+        </Nav>
       </div>
     );
   }
