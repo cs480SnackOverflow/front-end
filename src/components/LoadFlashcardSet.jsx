@@ -29,14 +29,23 @@ class LoadFlashcardSet extends React.Component {
     annyang.start();
   }
 
-  getInitialState() {
-    return {flashcards: [],title:''};
+  testUser() {
+    this.speak('You are in testing mode. Starting now');
+  }
+
+  talkOutLoud() {
+    this.speak('Welcome to Commuter Study. Would you like to study or test?');
+    this.startAnnyang();
   }
 
   sayOutLoud(sentences) {
     let audioSrc = 'http://commuterstudy.com/audio?msg=' + sentences;
     let audio = new Audio(audioSrc);
     audio.play();
+  }
+
+  getInitialState() {
+    return {flashcards: [],title:''};
   }
 
   componentDidMount() {
