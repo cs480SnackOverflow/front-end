@@ -14,31 +14,43 @@ class LoadFlashcardSet extends React.Component {
     };
   }
 
-  getInitialState() {
-    return {flashcards: [],title:''};
-  }
-
-  componentDidMount() {
+  getFlashcards() {
     axios.get('/api/flashcards').then(response => {
       this.setState({flashcards: response.data._embedded.flashcards});
       this.setState({title: response.data._embedded.flashcards[0].title});
     });
-    if (annyang) {
-      let commands = {
-        'introduction': () => this.setState({choice: 'intro'}),
-        'study': () => this.setState({choice: 'study'})
-      };
-      annyang.addCommands(commands);
-      annyang.start();
-    }
-    let audioSrc = 'http://commuterstudy.com/audio?msg=' + this.sayIntroduction();
+  }
+
+  startAnnyang() {
+    let commands = {
+      'introduction': () => this.setState({choice: 'intro'}),
+      'study': () => this.sayOutLoud('Study mode activated')
+    };
+    annyang.addCommands(commands);
+    annyang.start();
+  }
+
+  getInitialState() {
+    return {flashcards: [],title:''};
+  }
+
+  sayOutLoud(sentences) {
+    let audioSrc = 'http://commuterstudy.com/audio?msg=' + sentences;
     let audio = new Audio(audioSrc);
     audio.play();
   }
+
+  componentDidMount() {
+    this.getFlashcards();
+    this.sayOutLoud(this.sayIntroduction());
+    this.startAnnyang();
+  }
+
   sayIntroduction() {
     let str = 'Welcome to Commuter Study. Would you like to study or test?';
     return str;
   }
+
   speak(choice){
     if(choice === 'study'){
       console.log(choice);
@@ -61,9 +73,6 @@ class LoadFlashcardSet extends React.Component {
   }
 
   render() {
-    let audioSrc = 'http://commuterstudy.com/audio?msg=' + this.speak(this.state.choice);
-    let audio = new Audio(audioSrc);
-    audio.play();
     return (
       <div>
         <FlashcardList flashcards={this.state.flashcards} title={this.state.title}/>
