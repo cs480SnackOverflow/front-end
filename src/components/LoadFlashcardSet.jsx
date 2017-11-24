@@ -2,9 +2,6 @@ import React from 'react';
 import FlashcardList from './FlashcardList';
 import axios from 'axios';
 import annyang from 'annyang';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import StudyFlashcardSet from './StudyFlashcardSet'
 
 class LoadFlashcardSet extends React.Component {
 
@@ -12,13 +9,9 @@ class LoadFlashcardSet extends React.Component {
     super(props);
     this.state = {
       flashcards: [],
-      title: ''
+      title: '',
+      choice: 'init'
     };
-  }
-
-  sayIntroduction() {
-    let str = 'Welcome to Commuter Study. Would you like to study or test?';
-    return str.split().join('+');
   }
 
   getInitialState() {
@@ -30,22 +23,50 @@ class LoadFlashcardSet extends React.Component {
       this.setState({flashcards: response.data._embedded.flashcards});
       this.setState({title: response.data._embedded.flashcards[0].title});
     });
-  }
-  render() {
+    if (annyang) {
+      let commands = {
+        'introduction': () => this.setState({choice: 'intro'}),
+        'study': () => this.setState({choice: 'study'})
+      };
+      annyang.addCommands(commands);
+      annyang.start();
+    }
     let audioSrc = 'http://commuterstudy.com/audio?msg=' + this.sayIntroduction();
-    console.log(audioSrc);
+    let audio = new Audio(audioSrc);
+    audio.play();
+  }
+  sayIntroduction() {
+    let str = 'Welcome to Commuter Study. Would you like to study or test?';
+    return str;
+  }
+  speak(choice){
+    if(choice === 'study'){
+      console.log(choice);
+      return this.study();
+    }
+    else if(choice === 'intro'){
+      return this.sayIntroduction();
+    }
+    else if(choice ==='init'){
+      return '';
+    }
+  }
+  study(){
+    const flashcards = this.state.flashcards;
+    let str = 'Okay, I will say all terms followed by their definitions';
+    flashcards.forEach(function(flashcard){
+      str = str+". "+flashcard.term+'. '+flashcard.definition ;
+    });
+    return str.trim();
+  }
+
+  render() {
+    let audioSrc = 'http://commuterstudy.com/audio?msg=' + this.speak(this.state.choice);
+    let audio = new Audio(audioSrc);
+    audio.play();
     return (
       <div>
-        <audio autoPlay>
-          <source src={ audioSrc } type='audio/mpeg'/>
-            Your browser does not support the audio element.
-        </audio>
         <FlashcardList flashcards={this.state.flashcards} title={this.state.title}/>
-        <Nav>
-          <NavItem>
-            <NavLink href="/study">Study</NavLink>
-          </NavItem>
-        </Nav>
       </div>
     );
   }
