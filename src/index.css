@@ -1,5 +1,5 @@
 body {
-  background-color: #FF;
+  background-color: #FFF;
   padding: 0px;
   margin: 0;
 }
@@ -54,7 +54,21 @@ ul.header li a {
 }
 
 /*CreateFlashcardList styles*/
-
+.content {
+  background-color: #1c221e;
+}
+p2 {
+  color: #000;
+  font-weight: bold;
+  font-size: 150%;
+}
+p3 {
+  color: #000;
+}
+.content td{
+  padding: 10px;
+  margin: 20px;
+}
 .title-margin {
   margin: 20px 0px;
 }
