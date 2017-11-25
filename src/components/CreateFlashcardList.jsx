@@ -10,6 +10,8 @@ import {
   FormGroup,
   Input
 } from 'reactstrap';
+import {Card, Button, CardTitle, CardText} from 'reactstrap';
+
 import axios from 'axios';
 import uuidv1 from 'uuid';
 
@@ -72,31 +74,30 @@ class CreateFlashcardList extends React.Component {
   renderFlashcards() {
     const {flashcards} = this.props;
     return (
-      <Table  bordered>
-        <thead>
-          <tr>
-            <th>Term</th>
-            <th>Definition</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          {flashcards.map(flashcard => {
-            return (
-              <tr className="bottom-margin">
-                <td>{flashcard.term}</td>
-                <td>{flashcard.definition}</td>
-                <button type="button" className="btn indian-red full btn-danger" onClick={() => this.deleteFlashcard(flashcard.id)}>Delete
-                </button>
-              </tr>
-
-            )
-          })
+      <div>
+      <Table bordered>
+        {flashcards.map(flashcard => {
+          return (
+            <p>
+            <Card body>
+              <CardTitle>
+                <p2>{flashcard.term}</p2>
+              </CardTitle>
+              <CardText>
+                <p3>{flashcard.definition}</p3>
+              </CardText>
+              <Button type="button" className="btn indian-red full btn-danger" onClick={() => this.deleteFlashcard(flashcard.id)}>Delete</Button>
+            </Card>
+            </p>
+          )
+        })
         }
-          <button type="button" className="top-margin btn btn-success" onClick={() => this.handleSubmit(this)}>Submit
-          </button>
-        </tbody>
       </Table>
+      <p>
+      <Button type="button" size= "lg" className="top-margin btn btn-success" onClick={() => this.handleSubmit(this)}>Submit
+      </Button>
+      </p>
+      </div>
     );
   }
 
@@ -120,11 +121,9 @@ class CreateFlashcardList extends React.Component {
               </Col>
             </Row>
           </FormGroup>
-          <Row>
-            <Col md="3">
-              <button type="button" className="bottom-margin btn btn-success" onClick={() => this.addFlashcard()}>Add Flashcard</button>
-            </Col>
-          </Row>
+          <p>
+            <button type="button" className="bottom-margin btn btn-success" size = "lg" onClick={() => this.addFlashcard()}>Add Flashcard</button>
+          </p>
           {this.renderFlashcards()}
         </Form>
       </Container>
