@@ -40,6 +40,18 @@ const StudyButton = ({ title, history }) => (
 const NavStudy = () => (
   <Route path="/" render={(props) => <StudyButton {...props}title="Study" />} />
 )
+const AboutButton = ({ title, history }) => (
+  <Button
+    outline color="primary" size="lg"
+    onClick={() =>  window.location = 'http://cs480-projects.github.io/teams-fall2017/SnackOverflow/'}
+  >
+    {title}
+  </Button>
+);
+
+const NavAbout = () => (
+  <Route path='/' render={(props) => <AboutButton {...props}title="Learn more" />}/>
+)
 class LandingPage extends Component {
   render() {
     return (
@@ -59,7 +71,7 @@ class LandingPage extends Component {
 
           <li> <NavCreate/></li>
           <li> <NavStudy/></li>
-          <li> <Button outline color="primary" size="lg">Learn More      </Button>{' '}</li>
+          <li> <NavAbout/></li>
         </ul>
       </div>
       </div>
