@@ -2,8 +2,22 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { Route } from 'react-router-dom';
 import logo from '../images/commuter-study-gradient.png';
+import { bounceInLeft,flipInY } from 'react-animations'
+import Radium, {StyleRoot} from 'radium';
+
 require("../index.css");
 
+const styles = {
+  bounceInLeft: {
+    animation: 'x 2s',
+    animationName: Radium.keyframes(bounceInLeft, 'bounceInLeft'),
+  },
+  flip:{
+    animation: 'x 2s',
+    animationName: Radium.keyframes(flipInY, 'flip'),
+  }
+
+}
 const CreateButton = ({ title, history }) => (
   <Button
     color="primary" size="lg"
@@ -28,14 +42,21 @@ const NavStudy = () => (
 )
 class LandingPage extends Component {
   render() {
-    console.log(logo);
     return (
       <div>
       <div className="content">
         <img src={logo} alt='Logo' width="200" height="150"/>
-        <h1>Commuter Study</h1>
-        <p>Learn more on the go.</p>
+        <StyleRoot>
+          <div className="test" style={styles.bounceInLeft}>
+          <h1>Commuter Study</h1>
+          </div>
+          <div className="test" style={styles.flip}>
+          <p>Learn more on the go.</p>
+          </div>
+        </StyleRoot>
+
         <ul className="header">
+
           <li> <NavCreate/></li>
           <li> <NavStudy/></li>
           <li> <Button outline color="primary" size="lg">Learn More      </Button>{' '}</li>
