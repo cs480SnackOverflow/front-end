@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import 'react-banner/dist/style.css'
 import { Route } from 'react-router-dom';
+require("../index.css");
 
 const CreateButton = ({ title, history }) => (
   <Button

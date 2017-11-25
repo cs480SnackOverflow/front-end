@@ -4,7 +4,6 @@ import TopNavbar from './TopNavbar';
 import CreateFlashcardList from './CreateFlashcardList';
 import LoadFlashcardSet from './LoadFlashcardSet';
 import LandingPage from './LandingPage';
-import "../index.css";
 
 class App extends Component {
 
