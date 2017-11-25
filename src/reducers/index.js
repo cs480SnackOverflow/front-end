@@ -1,8 +1,11 @@
 import { ADD_FLASHCARD, DELETE_FLASHCARD } from '../constants';
 
+var initialId = 0;
 const flashcard = (action) => {
   let { term, definition } = action;
+  initialId = initialId + 1;
   return {
+    id: initialId+1,
     term,
     definition
   }

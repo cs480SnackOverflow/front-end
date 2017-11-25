@@ -37,7 +37,6 @@ class CreateFlashcardList extends React.Component {
      flashcards[i].title = this.state.title;
      flashcards[i].version = 0;
      flashcards[i].userId = "default";
-     flashcards[i].id = i + 1;
      flashcards[i].setId = uuidv1();
   }
 
