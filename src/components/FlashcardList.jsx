@@ -3,6 +3,7 @@ import Flashcard from './Flashcard';
 import { Table } from 'reactstrap';
 
 class FlashcardList extends Component {
+
   render() {
     let flashcards = this.props.flashcards.map(flashcard =>
       <Flashcard flashcard={flashcard}/>
