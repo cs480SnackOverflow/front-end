@@ -30,6 +30,7 @@ class LandingPage extends Component {
     return (
       <div>
       <div className="content">
+        <img src={require('../images/commuter-study-gradient.png') } width="200" height="150"/>
         <h1>Commuter Study</h1>
         <p>Learn more on the go.</p>
         <ul className="header">
