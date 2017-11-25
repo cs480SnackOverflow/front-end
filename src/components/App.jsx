@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TopNavbar from './TopNavbar';
 import CreateFlashcardList from './CreateFlashcardList';
 import LoadFlashcardSet from './LoadFlashcardSet';
+import LandingPage from './LandingPage';
 
 class App extends Component {
 
@@ -18,10 +19,12 @@ class App extends Component {
       <Router>
         <div>
           <Route path='/' component={TopNavbar}/>
+          <Route exact path='/' component={LandingPage}/>
           <Route path='/sets' component={LoadFlashcardSet}/>
           <Route path='/create' component={CreateFlashcardList}/>
         </div>
       </Router>
+
     )
   }
 }

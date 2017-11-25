@@ -19,7 +19,7 @@ export default class TopNavbar extends React.Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">Commuter Studdy</NavbarBrand>
+          <NavbarBrand href="/">Commuter Study</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
