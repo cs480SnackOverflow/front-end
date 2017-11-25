@@ -13,6 +13,8 @@ import {
 import axios from 'axios';
 import uuidv1 from 'uuid';
 
+require("../index.css");
+
 class CreateFlashcardList extends React.Component {
   constructor(props) {
     super(props);
@@ -70,7 +72,7 @@ class CreateFlashcardList extends React.Component {
   renderFlashcards() {
     const {flashcards} = this.props;
     return (
-      <Table>
+      <Table  bordered>
         <thead>
           <tr>
             <th>Term</th>
@@ -81,17 +83,17 @@ class CreateFlashcardList extends React.Component {
 
           {flashcards.map(flashcard => {
             return (
-              <tr>
+              <tr className="bottom-margin">
                 <td>{flashcard.term}</td>
                 <td>{flashcard.definition}</td>
-                <button type="button" className="btn btn-danger" onClick={() => this.deleteFlashcard(flashcard.id)}>Delete
+                <button type="button" className="btn indian-red full btn-danger" onClick={() => this.deleteFlashcard(flashcard.id)}>Delete
                 </button>
               </tr>
 
             )
           })
         }
-          <button type="button" className="btn btn-success" onClick={() => this.handleSubmit(this)}>Submit
+          <button type="button" className="top-margin btn btn-success" onClick={() => this.handleSubmit(this)}>Submit
           </button>
         </tbody>
       </Table>
@@ -101,26 +103,26 @@ class CreateFlashcardList extends React.Component {
   render() {
     console.log('this.props', this.props);
     return (
-      <Container fluid>
+      <Container className="padding" fluid>
         <Row>
           <Col>
-            <Input type="text" name="title" id="term" placeholder="Your set's title here" size="lg" onChange={event => this.setState({title: event.target.value})}/>
+            <Input className="title-margin slate" type="text" name="title" id="term" placeholder="Your set's title here" size="lg" onChange={event => this.setState({title: event.target.value})}/>
           </Col>
         </Row>
         <Form onSubmit={this.handleAddCard}>
           <FormGroup>
             <Row>
               <Col>
-                <input className="form-control" placeholder="Term" onChange={event => this.setState({term: event.target.value})}/>
+                <input className="form-control slate" placeholder="Term" onChange={event => this.setState({term: event.target.value})}/>
               </Col>
               <Col>
-                <input className="form-control" placeholder="Definition" onChange={event => this.setState({definition: event.target.value})}/>
+                <input className="form-control slate" placeholder="Definition" onChange={event => this.setState({definition: event.target.value})}/>
               </Col>
             </Row>
           </FormGroup>
           <Row>
             <Col md="3">
-              <button type="button" className="btn btn-success" onClick={() => this.addFlashcard()}>Add Flashcard</button>
+              <button type="button" className="bottom-margin btn btn-success" onClick={() => this.addFlashcard()}>Add Flashcard</button>
             </Col>
           </Row>
           {this.renderFlashcards()}
