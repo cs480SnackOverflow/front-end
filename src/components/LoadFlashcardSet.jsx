@@ -9,8 +9,7 @@ class LoadFlashcardSet extends React.Component {
     super(props);
     this.state = {
       flashcards: [],
-      title: '',
-      choice: 'init'
+      title: ''
     };
   }
 
@@ -24,7 +23,7 @@ class LoadFlashcardSet extends React.Component {
   startAnnyang() {
     let commands = {
       'introduction': () => this.setState({choice: 'intro'}),
-      'study': () => this.sayOutLoud('Study mode activated')
+      'study': () => this.sayOutLoud(this.study())
     };
     annyang.addCommands(commands);
     annyang.start();
@@ -51,18 +50,6 @@ class LoadFlashcardSet extends React.Component {
     return str;
   }
 
-  speak(choice){
-    if(choice === 'study'){
-      console.log(choice);
-      return this.study();
-    }
-    else if(choice === 'intro'){
-      return this.sayIntroduction();
-    }
-    else if(choice ==='init'){
-      return '';
-    }
-  }
   study(){
     const flashcards = this.state.flashcards;
     let str = 'Okay, I will say all terms followed by their definitions';
