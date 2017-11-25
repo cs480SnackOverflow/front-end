@@ -16,10 +16,12 @@ import uuidv1 from 'uuid';
 class CreateFlashcardList extends React.Component {
   constructor(props) {
     super(props);
+    let initialId = this.getStartingId();
     this.state = {
       term: '',
       definition: '',
-      title: ''
+      title: '',
+      id: initialId
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,11 +38,24 @@ class CreateFlashcardList extends React.Component {
   addMoreInfoToFlashcard(flashcard, i, flashcards) {
      flashcards[i].title = this.state.title;
      flashcards[i].version = 0;
-     flashcards[i].userId = "default";
-     flashcards[i].id = i + 1;
+     flashcards[i].userId = 0;
      flashcards[i].setId = uuidv1();
+     flashcards[i].id = this.state.id;
+     this.setState({id: this.state.id+1});
   }
-
+  extractTermAndDefinition(flashcard, i){
+    return  {
+      term: flashcard.term,
+      definition: flashcard.definition
+    };
+  }
+  getStartingId(){
+    let total = 0;
+    axios.get('flashcards/total').then(response => {
+      total = response;
+    });
+    return total;
+  }
   handleSubmit(event) {
     alert("Your flashcard set has been submitted!");
     const flashcards = this.props.flashcards;
