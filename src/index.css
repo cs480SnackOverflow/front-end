@@ -8,7 +8,14 @@ h1 {
   text-align: center;
   color: #FFF;
   font-size: 300%;
-  padding: 20px;
+  padding: 0px;
+}
+p {
+  font-family: sans-serif;
+  text-align: center;
+  color: #FFF;
+  font-size: 150%;
+  padding: 0px;
 }
 ul.header li {
   display: inline;
