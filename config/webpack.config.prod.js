@@ -130,15 +130,6 @@ module.exports = {
         ],
         include: paths.appSrc,
       },
-      { 
-        test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
-          use: { 
-            loader: "file-loader",
-            options:{
-              name: "[path][name].[hash].[ext]",
-            },
-          },
-        },
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
@@ -151,7 +142,7 @@ module.exports = {
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              name: 'static/media/[name].[hash:8].[ext]',
+              name: 'media/[name].[hash:8].[ext]',
             },
           },
           // Process JS with Babel.

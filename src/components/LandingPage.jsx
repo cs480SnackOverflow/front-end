@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { Route } from 'react-router-dom';
+import logo from '../images/commuter-study-gradient.png';
 require("../index.css");
 
 const CreateButton = ({ title, history }) => (
@@ -27,10 +28,11 @@ const NavStudy = () => (
 )
 class LandingPage extends Component {
   render() {
+    console.log(logo);
     return (
       <div>
       <div className="content">
-        <img src={require('../images/commuter-study-gradient.png') } width="200" height="150"/>
+        <img src={logo} alt='Logo' width="200" height="150"/>
         <h1>Commuter Study</h1>
         <p>Learn more on the go.</p>
         <ul className="header">
