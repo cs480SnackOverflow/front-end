@@ -29,6 +29,9 @@ export default class TopNavbar extends React.Component {
               <NavItem>
                 <NavLink href="/sets">Sets</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/AllSets">Sets</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
