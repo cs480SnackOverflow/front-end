@@ -18,13 +18,13 @@ class LoadFlashcardSet extends React.Component {
   }
 
   getFlashcards() {
-    axios.get('/api/flashcards').then(response => {
+    return axios.get('/api/flashcards').then(response => {
       this.setState({flashcards: response.data._embedded.flashcards});
       this.setState({title: response.data._embedded.flashcards[0].title});
+      for (let i=0; i < this.state.flashcards.length; i++) {
+        this.flashcardStatus.push(-1);
+      }
     });
-    for (let i=0; i < this.state.flashcards.length; i++) {
-      this.flashcardStatus.push(-1);
-    }
   }
 
   getNextQuestion() {
@@ -128,9 +128,9 @@ class LoadFlashcardSet extends React.Component {
   }
 
   componentDidMount() {
-    this.getFlashcards();
-    this.speak(this.sayIntroduction());
-    this.startAnnyang();
+    this.getFlashcards()
+      .then(() => this.speak(this.sayIntroduction()))
+      .then(() => this.startAnnyang());
   }
 
   sayIntroduction() {
