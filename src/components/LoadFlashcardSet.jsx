@@ -7,20 +7,21 @@ class LoadFlashcardSet extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       flashcards: [
       ],
       title: '',
+      setId: ''
     };
     this.flashcardStatus = [];
     this.correctAnswers = 0;
   }
 
   getFlashcards() {
-    return axios.get('/api/flashcards').then(response => {
-      this.setState({flashcards: response.data._embedded.flashcards});
-      this.setState({title: response.data._embedded.flashcards[0].title});
+    return axios.get('flashcard/set/'+this.setId).then(response => {
+      this.setState({flashcards: response.data.flashcards});
+      this.setState({title: response.data[0].title});
       for (let i=0; i < this.state.flashcards.length; i++) {
         this.flashcardStatus.push(-1);
       }
@@ -58,9 +59,9 @@ class LoadFlashcardSet extends React.Component {
       if (this.flashcardStatus[i] === 0) {
         return this.state.flashcards[i].definition;
       }
-    } 
+    }
   }
-  
+
 
   checkFlashcard(definition) {
     for (let i=0; i < this.state.flashcards.length; i++) {
@@ -98,7 +99,7 @@ class LoadFlashcardSet extends React.Component {
   }
 
   startAnnyang() {
-    let commands = this.initializeCommands(); 
+    let commands = this.initializeCommands();
     annyang.addCommands(commands);
     annyang.addCallback('resultNoMatch', () => this.getIncorrectAnswer());
     annyang.start();
@@ -107,7 +108,7 @@ class LoadFlashcardSet extends React.Component {
   testUser() {
     this.speak('You are in testing mode. Starting now')
       .then(() => this.askQuestion(this.getUnansweredTerm()));
-    
+
   }
 
   askQuestion(term) {
@@ -127,12 +128,6 @@ class LoadFlashcardSet extends React.Component {
     return {flashcards: [],title:''};
   }
 
-  componentDidMount() {
-    this.getFlashcards()
-      .then(() => this.speak(this.sayIntroduction()))
-      .then(() => this.startAnnyang());
-  }
-
   sayIntroduction() {
     let str = 'Welcome to Commuter Study. Would you like to study or test?';
     return str;
@@ -145,6 +140,14 @@ class LoadFlashcardSet extends React.Component {
       str = str+". "+flashcard.term+'. '+flashcard.definition ;
     });
     return str.trim();
+  }
+  componentWillReceiveProps(nextProps){
+    if(this.props!==nextProps){
+      this.setState({setId: nextProps});
+      this.getFlashcards()
+        .then(() => this.speak(this.sayIntroduction()))
+        .then(() => this.startAnnyang());
+    }
   }
 
   render() {

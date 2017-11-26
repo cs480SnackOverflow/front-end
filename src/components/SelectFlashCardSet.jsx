@@ -9,22 +9,19 @@ import {
   Table,
   Form,
   FormGroup,
-  Input
+  Input,
+  Button
 } from 'reactstrap';
+import LoadFlashcardSet from './LoadFlashcardSet';
 
 class SelectFlashcardSet extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      sets: []
+      sets: [],
+      set: "0"
     };
-  }
-  getTitles(set){
-    return set.title;
-  }
-  getSetIds(set){
-    return set.setId;
   }
   getFlashcardSets() {
     axios.get('flashcard/set/allsets').then(response => {
@@ -35,40 +32,37 @@ class SelectFlashcardSet extends React.Component {
       console.log(error);
     });
   }
-  getInitialState() {
-    return {flashcards: [],title:''};
-  }
   componentDidMount() {
     this.getFlashcardSets();
   }
-  selectSet(selectedTitle){
-
-  }
-
   render() {
+    console.log(this.state.set);
+    console.log(this.state.sets);
     const sets = this.state.sets;
-    return (
-      <div>
-      <Table>
-        <thead>
-          <tr>
-            <th>Set</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sets.map(set => {
-            return (
+      return (
+        <div>
+          <Table>
+            <thead>
               <tr>
-              <button type="button" className="btn btn-primary" onClick={() => this.selectSet(set.setId)}>{set.title}
-              </button>
+                <th>Set</th>
               </tr>
-            )
-          })
-        }
-        </tbody>
-      </Table>
-      </div>
-    );
+            </thead>
+            <tbody>
+              {sets.map(set => {
+                console.log(set);
+                return (
+                  <tr>
+                    <Button type="button" className="btn btn-primary" onClick={() => this.setState({set:set.setId})}>{set.title}
+                    </Button>
+                  </tr>
+                )
+              })
+}
+            </tbody>
+          </Table>
+            <LoadFlashcardSet setId={this.state.set}/>
+        </div>
+      );
   }
 }
 

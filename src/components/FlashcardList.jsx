@@ -5,9 +5,13 @@ import { Table } from 'reactstrap';
 class FlashcardList extends Component {
 
   render() {
-    let flashcards = this.props.flashcards.map(flashcard =>
-      <Flashcard flashcard={flashcard}/>
-    );
+    let flashcards = [];
+    if(this.props.flashcards){
+      flashcards = this.props.flashcards.map(flashcard =>
+        <Flashcard flashcard={flashcard}/>
+      );
+    }
+
     return (
       <div>
         <h1> {this.props.title} </h1>
