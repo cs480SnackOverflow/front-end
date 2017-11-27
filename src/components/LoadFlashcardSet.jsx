@@ -53,14 +53,13 @@ class LoadFlashcardSet extends React.Component {
     return '';
   }
 
-  getCurrentTerm() {
+  getCurrentDefinition() {
     for (let i=0; i< this.state.flashcards.length; i++) {
       if (this.flashcardStatus[i] === 0) {
         return this.state.flashcards[i].definition;
       }
     } 
   }
-  
 
   checkFlashcard(definition) {
     for (let i=0; i < this.state.flashcards.length; i++) {
@@ -71,15 +70,24 @@ class LoadFlashcardSet extends React.Component {
     }
   }
 
+  getAnswer(definition) {
+    let currentDefinition = this.getCurrentDefinition();
+    this.checkFlashcard(currentDefinition);
+    if (currentDefinition === definition) {
+      this.getCorrectAnswer();
+    }
+    else {
+      this.getIncorrectAnswer();
+    }
+  }
+
   getCorrectAnswer(definition) {
-    this.checkFlashcard(definition);
     this.correctAnswers += 1;
     this.speak('Correct')
       .then(() => this.getNextQuestion());
   }
 
   getIncorrectAnswer() {
-    this.checkFlashcard(this.getCurrentTerm());
     this.speak('Incorrect')
       .then(() => this.getNextQuestion());
   }
@@ -92,7 +100,7 @@ class LoadFlashcardSet extends React.Component {
     };
     for (let i = 0; i < this.state.flashcards.length; i++) {
       let flashcard = this.state.flashcards[i];
-      commands[flashcard.definition] = () => this.getCorrectAnswer(flashcard.definition);
+      commands[flashcard.definition] = () => this.getAnswer(flashcard.definition);
     }
     return commands;
   }
