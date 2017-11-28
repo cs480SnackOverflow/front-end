@@ -75,7 +75,7 @@ class CreateFlashcardList extends React.Component {
     const {flashcards} = this.props;
     return (
       <div>
-      <Table bordered>
+      <Table>
         {flashcards.map(flashcard => {
           return (
             <p>
@@ -104,7 +104,9 @@ class CreateFlashcardList extends React.Component {
   render() {
     console.log('this.props', this.props);
     return (
+      <div className="content">
       <Container className="padding" fluid>
+        <h1>Create your new set.</h1>
         <Row>
           <Col>
             <Input className="title-margin slate" type="text" name="title" id="term" placeholder="Your set's title here" size="lg" onChange={event => this.setState({title: event.target.value})}/>
@@ -127,6 +129,7 @@ class CreateFlashcardList extends React.Component {
           {this.renderFlashcards()}
         </Form>
       </Container>
+      </div>
     );
   }
 }
