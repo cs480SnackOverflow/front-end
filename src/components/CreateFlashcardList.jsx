@@ -75,11 +75,7 @@ class CreateFlashcardList extends React.Component {
     const {flashcards} = this.props;
     return (
       <div>
-<<<<<<< HEAD
       <Table>
-=======
-      <Table bordered>
->>>>>>> 50bd5bce6fd1e974cef239868b2445f59099bf7b
         {flashcards.map(flashcard => {
           return (
             <p>
