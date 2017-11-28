@@ -10,7 +10,7 @@ class FlashcardList extends Component {
     );
     return (
       <div>
-        <h1> {this.props.title} </h1>
+        <h2>{this.props.title}</h2>
         <Table bordered striped>
           <tbody>
             <tr>
