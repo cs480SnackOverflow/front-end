@@ -124,7 +124,7 @@ class LoadFlashcardSet extends React.Component {
 
   speak(message) {
     return new Promise((resolve, reject) => {
-      let audioSrc = 'http://commuterstudy.com/audio?msg=' + message;
+      let audioSrc = '/audio?msg=' + message;
       let audio = new Audio(audioSrc);
       audio.onended = () => resolve();
       audio.play();
