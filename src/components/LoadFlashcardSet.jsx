@@ -7,7 +7,7 @@ class LoadFlashcardSet extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       flashcards: [
       ],
@@ -58,7 +58,7 @@ class LoadFlashcardSet extends React.Component {
       if (this.flashcardStatus[i] === 0) {
         return this.state.flashcards[i].definition;
       }
-    } 
+    }
   }
 
   checkFlashcard(definition) {
@@ -106,7 +106,7 @@ class LoadFlashcardSet extends React.Component {
   }
 
   startAnnyang() {
-    let commands = this.initializeCommands(); 
+    let commands = this.initializeCommands();
     annyang.addCommands(commands);
     annyang.addCallback('resultNoMatch', () => this.getIncorrectAnswer());
     annyang.start();
@@ -115,7 +115,7 @@ class LoadFlashcardSet extends React.Component {
   testUser() {
     this.speak('You are in testing mode. Starting now')
       .then(() => this.askQuestion(this.getUnansweredTerm()));
-    
+
   }
 
   askQuestion(term) {
@@ -124,9 +124,13 @@ class LoadFlashcardSet extends React.Component {
 
   speak(message) {
     return new Promise((resolve, reject) => {
+      annyang.pause();
       let audioSrc = '/audio?msg=' + message;
       let audio = new Audio(audioSrc);
-      audio.onended = () => resolve();
+      audio.onended = function(){
+        resolve();
+        annyang.resume();
+      };
       audio.play();
     });
   }
