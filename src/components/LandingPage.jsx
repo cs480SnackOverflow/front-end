@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { Route } from 'react-router-dom';
-import logo from '../images/commuter-study-gradient.png';
 import { bounceInLeft,flipInY } from 'react-animations'
 import Radium, {StyleRoot} from 'radium';
 
@@ -57,7 +56,7 @@ class LandingPage extends Component {
     return (
       <div>
       <div className="content">
-        <img src={logo} alt='Logo' width="200" height="150"/>
+        <img src='https://i.imgur.com/yyMBe8m.png' alt='Logo' width="200" height="150"/>
         <StyleRoot>
           <div className="test" style={styles.bounceInLeft}>
           <h1>Commuter Study</h1>
